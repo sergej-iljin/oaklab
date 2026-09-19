@@ -1,0 +1,50 @@
+{
+  "id": "OL-008",
+  "status": "draft",
+  "title": "A-M+",
+  "author": "Founding dataset",
+  "createdAt": null,
+  "oak": {
+    "type": "A-M+",
+    "species": null,
+    "origin": null,
+    "form": "chips",
+    "particleSize": null,
+    "toast": "Medium+",
+    "preparation": {
+      "soaking": "48 h",
+      "boiling": "30 min",
+      "rinsing": null,
+      "drying": null,
+      "notes": null
+    }
+  },
+  "liquid": {
+    "base": null,
+    "abv": null,
+    "volumeMl": null
+  },
+  "extraction": {
+    "doseGPerL": null,
+    "durationDays": null,
+    "temperatureC": null,
+    "container": null,
+    "agitation": null,
+    "notes": null
+  },
+  "observations": {
+    "appearance": null,
+    "aroma": null,
+    "taste": null,
+    "mouthfeel": null,
+    "overallNotes": "Preparation recorded from the current project notes; other parameters remain unfilled until verified."
+  },
+  "replication": {
+    "sourceId": null
+  },
+  "evidence": {
+    "photos": [],
+    "attachments": [],
+    "sourceNotes": null
+  }
+}
