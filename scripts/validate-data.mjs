@@ -1,7 +1,7 @@
 import fs from "node:fs";
 
 const data = JSON.parse(fs.readFileSync("data.json", "utf8"));
-const required = ["schemaVersion","id","status","title","author","oak","liquid","extraction","observations","replication","evidence"];
+const required = ["id","status","title","author","oak","liquid","extraction","observations","replication","evidence"];
 
 if (data.schemaVersion !== 2) throw new Error("data.json must use schemaVersion 2");
 if (!Array.isArray(data.experiments)) throw new Error("data.json: experiments must be an array");
