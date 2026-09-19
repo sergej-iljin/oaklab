@@ -1,21 +1,36 @@
 # OakLab
 
-**Open database for oak infusion and aging experiments.**
+**Open database for reproducible oak infusion and aging experiments.**
 
 OakLab is built around **Share → Reproduce → Compare**. An experiment is a structured record of conditions and observations, not a rating.
 
-## v0.1
+## v0.2 data model
 
-- experiment records
-- search and toast filtering
-- replication via `sourceId`
-- browser-local persistence
-- JSON export
-- eight founding oak variants
+Each experiment uses a versioned schema. The model separates:
+
+- **Oak** — type, species/origin when known, physical form, toast and preparation.
+- **Liquid** — base, ABV and volume.
+- **Extraction** — oak dose, duration, temperature and handling conditions.
+- **Observations** — appearance, aroma, taste, mouthfeel and notes.
+- **Replication** — a link to the source experiment through `sourceId`.
+- **Evidence** — photos, attachments and source notes.
+- **Status** — draft or published.
+
+Unknown values remain `null`; they must not be inferred.
 
 ## Data integrity
 
-Unknown values are deliberately left blank. The founding records must be completed from the original experimental notes before public publication. No inferred measurements should be presented as facts.
+OakLab distinguishes experimental facts from interpretation. A missing measurement stays missing. Tasting observations are recorded as observations, not converted into universal ratings.
+
+The founding dataset contains eight oak variants from the original project notes. Records should be completed from those notes before being treated as published experimental data.
+
+## Roadmap
+
+1. Structured v0.2 experiment schema
+2. Shared public dataset
+3. Reproduction workflow
+4. Comparison of replicated experiments
+5. Public contribution workflow
 
 ## Run
 
