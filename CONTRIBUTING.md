@@ -17,7 +17,7 @@ Before submitting:
 5. If this is a replication, set replication.sourceId to the original OakLab experiment ID.
 6. Include source notes when the record is transcribed from an existing notebook or experiment log.
 
-The current public dataset is in data.json. The formal record structure is documented in schema/experiment.schema.json.
+The current public dataset uses `data.json` as an index and stores each experiment in `data/experiments/<ID>.json`. The formal record structure is documented in `schema/experiment.schema.json`. When adding an experiment, add its record file and its index entry. Do not duplicate the full record inside `data.json`.
 
 ## Review
 
