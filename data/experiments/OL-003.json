@@ -1,0 +1,50 @@
+{
+  "id": "OL-003",
+  "status": "draft",
+  "title": "C-Light",
+  "author": "Founding dataset",
+  "createdAt": null,
+  "oak": {
+    "type": "C-Light",
+    "species": null,
+    "origin": null,
+    "form": "chips",
+    "particleSize": null,
+    "toast": "Light",
+    "preparation": {
+      "soaking": null,
+      "boiling": null,
+      "rinsing": null,
+      "drying": null,
+      "notes": null
+    }
+  },
+  "liquid": {
+    "base": null,
+    "abv": null,
+    "volumeMl": null
+  },
+  "extraction": {
+    "doseGPerL": null,
+    "durationDays": null,
+    "temperatureC": null,
+    "container": null,
+    "agitation": null,
+    "notes": null
+  },
+  "observations": {
+    "appearance": null,
+    "aroma": null,
+    "taste": null,
+    "mouthfeel": null,
+    "overallNotes": "Initial founding entry."
+  },
+  "replication": {
+    "sourceId": null
+  },
+  "evidence": {
+    "photos": [],
+    "attachments": [],
+    "sourceNotes": null
+  }
+}
