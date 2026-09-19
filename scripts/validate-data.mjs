@@ -20,4 +20,9 @@ for (let i = 0; i < data.experiments.length; i++) {
   if (x.extraction.doseGPerL != null && (typeof x.extraction.doseGPerL !== "number" || x.extraction.doseGPerL < 0)) throw new Error(x.id + ": invalid doseGPerL");
   if (x.extraction.durationDays != null && (typeof x.extraction.durationDays !== "number" || x.extraction.durationDays < 0)) throw new Error(x.id + ": invalid durationDays");
 }
+for (const x of data.experiments) {
+  const path = "data/experiments/" + x.id + ".json";
+  const file = JSON.parse(fs.readFileSync(path, "utf8"));
+  if (JSON.stringify(file) !== JSON.stringify(x)) throw new Error(x.id + ": index record does not match individual experiment file");
+}
 console.log("OakLab validation passed: " + data.experiments.length + " experiment(s), " + ids.size + " unique IDs.");
