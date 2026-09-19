@@ -1,0 +1,57 @@
+name: New experiment
+description: Propose an OakLab experiment for inclusion in the public dataset.
+title: "[Experiment] "
+labels: ["experiment"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please provide documented experimental information only. Unknown values should be left blank or marked as unknown.
+  - type: input
+    id: title
+    attributes:
+      label: Experiment title
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: Author
+    validations:
+      required: true
+  - type: input
+    id: oak
+    attributes:
+      label: Oak type
+    validations:
+      required: true
+  - type: dropdown
+    id: toast
+    attributes:
+      label: Toast
+      options:
+        - Light
+        - Medium
+        - Medium+
+        - Heavy
+        - Char
+        - Unknown
+  - type: textarea
+    id: conditions
+    attributes:
+      label: Preparation and extraction conditions
+      description: Include only documented values, with units.
+  - type: textarea
+    id: observations
+    attributes:
+      label: Observations
+      description: Separate appearance, aroma, taste and mouthfeel where possible.
+  - type: input
+    id: source
+    attributes:
+      label: Source experiment ID
+      description: Fill this only when reproducing an existing OakLab record.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Source notes / evidence
