@@ -7,7 +7,7 @@
 - [ ] Units are explicit.
 - [ ] Sensory observations are separated from measured conditions.
 - [ ] Replications reference the original experiment with `replication.sourceId`.
-- [ ] `data.json` remains valid under the OakLab v2 structure.
+- [ ] `data.json` remains a valid index and the new record is in `data/experiments/`.
 - [ ] Photos or source notes are included when available.
 
 ### Description
