@@ -1,0 +1,50 @@
+{
+  "id": "OL-002",
+  "status": "draft",
+  "title": "B-M+",
+  "author": "Founding dataset",
+  "createdAt": null,
+  "oak": {
+    "type": "B-M+",
+    "species": null,
+    "origin": null,
+    "form": "chips",
+    "particleSize": null,
+    "toast": "Medium+",
+    "preparation": {
+      "soaking": null,
+      "boiling": null,
+      "rinsing": null,
+      "drying": null,
+      "notes": null
+    }
+  },
+  "liquid": {
+    "base": null,
+    "abv": null,
+    "volumeMl": null
+  },
+  "extraction": {
+    "doseGPerL": null,
+    "durationDays": null,
+    "temperatureC": null,
+    "container": null,
+    "agitation": null,
+    "notes": null
+  },
+  "observations": {
+    "appearance": null,
+    "aroma": null,
+    "taste": null,
+    "mouthfeel": null,
+    "overallNotes": "Initial founding entry."
+  },
+  "replication": {
+    "sourceId": null
+  },
+  "evidence": {
+    "photos": [],
+    "attachments": [],
+    "sourceNotes": null
+  }
+}
