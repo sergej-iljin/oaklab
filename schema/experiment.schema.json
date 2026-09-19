@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OakLab experiment",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "status",
+    "title",
+    "author",
+    "oak",
+    "liquid",
+    "extraction",
+    "observations",
+    "replication",
+    "evidence"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^(OL|LOCAL)-[A-Za-z0-9-]+$"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "published"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1
+    },
+    "createdAt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "oak": {
+      "type": "object",
+      "required": [
+        "type",
+        "species",
+        "origin",
+        "form",
+        "particleSize",
+        "toast",
+        "preparation"
+      ]
+    },
+    "liquid": {
+      "type": "object",
+      "required": [
+        "base",
+        "abv",
+        "volumeMl"
+      ]
+    },
+    "extraction": {
+      "type": "object",
+      "required": [
+        "doseGPerL",
+        "durationDays",
+        "temperatureC",
+        "container",
+        "agitation",
+        "notes"
+      ]
+    },
+    "observations": {
+      "type": "object",
+      "required": [
+        "appearance",
+        "aroma",
+        "taste",
+        "mouthfeel",
+        "overallNotes"
+      ]
+    },
+    "replication": {
+      "type": "object",
+      "required": [
+        "sourceId"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "photos",
+        "attachments",
+        "sourceNotes"
+      ]
+    }
+  }
+}
