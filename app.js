@@ -47,15 +47,36 @@ function render(){
 }
 function card(x){
  const c=color(x),children=data.filter(y=>y.replication?.sourceId===x.id).length;
- let chips="";if(x.oak?.toast)chips+='<span class="chip">'+esc(x.oak.toast)+"</span>";if(x.liquid?.abv!=null)chips+='<span class="chip">'+x.liquid.abv+"% ABV</span>";if(x.extraction?.doseGPerL!=null)chips+='<span class="chip">'+x.extraction.doseGPerL+" g/L</span>";if(x.extraction?.durationDays!=null)chips+='<span class="chip">'+x.extraction.durationDays+" "+t("days")+"</span>";
- return '<article class="card"><label class="card-select"><input type="checkbox" class="compare-check" data-id="'+esc(x.id)+'" '+(selectedIds.has(x.id)?"checked":"")+'><span>'+t("selectForCompare")+"</span></label><div class="card-top">'+(c?glass(x,false):"")+'<div><h3>'+esc(x.title)+'</h3><div class="meta">'+esc(x.oak?.type||"")+" · "+esc(x.oak?.form||"")+" · "+esc(x.author||"")+'</div></div></div><div class="chips">'+chips+'</div>'+(x.replication?.sourceId?'<div class="meta">↳ '+esc(x.replication.sourceId)+"</div>":"")+'<small>'+children+" "+t("replications")+'</small><p>'+esc(x.observations?.overallNotes||"")+'</p><button class="open" data-id="'+esc(x.id)+'">'+t("view")+"</button></article>";
+ let chips="";
+ if(x.oak?.toast)chips+=`<span class="chip">${esc(x.oak.toast)}</span>`;
+ if(x.liquid?.abv!=null)chips+=`<span class="chip">${x.liquid.abv}% ABV</span>`;
+ if(x.extraction?.doseGPerL!=null)chips+=`<span class="chip">${x.extraction.doseGPerL} g/L</span>`;
+ if(x.extraction?.durationDays!=null)chips+=`<span class="chip">${x.extraction.durationDays} ${t("days")}</span>`;
+ return `<article class="card">
+   <label class="card-select"><input type="checkbox" class="compare-check" data-id="${esc(x.id)}" ${selectedIds.has(x.id)?"checked":""}><span>${t("selectForCompare")}</span></label>
+   <div class="card-top">${c?glass(x,false):""}<div><h3>${esc(x.title)}</h3><div class="meta">${esc(x.oak?.type||"")} · ${esc(x.oak?.form||"")} · ${esc(x.author||"")}</div></div></div>
+   <div class="chips">${chips}</div>
+   ${x.replication?.sourceId?`<div class="meta">↳ ${esc(x.replication.sourceId)}</div>`:""}
+   <small>${children} ${t("replications")}</small>
+   <p>${esc(x.observations?.overallNotes||"")}</p>
+   <button class="open" data-id="${esc(x.id)}">${t("view")}</button>
+ </article>`;
 }
 function details(x){
  const p=x.oak?.preparation||{},e=x.extraction||{},l=x.liquid||{},o=x.observations||{},ts=x.tastingSessions||[];
- const row=(label,v,unit="")=>v!=null&&v!==""?"<div><dt>"+label+"</dt><dd>"+esc(v)+unit+"</dd></div>":"";
+ const row=(label,v,unit="")=>v!=null&&v!==""?`<div><dt>${label}</dt><dd>${esc(v)}${unit}</dd></div>`:"";
  const scoreLabels={aroma:"Аромат",softness:"Мягкость",oak:"Дуб / древесность",vanilla:"Ваниль",caramelToast:"Карамель / обжарка",fruitNut:"Сухофрукты / орехи",smokeChar:"Дым / обугленность",spirit:"Спиртуозность",bitterness:"Горечь",astringency:"Терпкость"};
- const tasting=ts.map(v=>'<h3>'+t("firstTasting")+" — "+esc(v.date||"")+'</h3><div class="meta">'+t("order")+": "+esc(v.order??"—")+" · "+t("aging")+": "+esc(v.agingDays??"—")+" "+t("days")+" · "+t("total")+": "+esc(v.total??"—")+"/50 · "+t("overall")+": "+esc(v.overall??"—")+"/10</div><dl>'+Object.entries(scoreLabels).map(([k,n])=>row(n,v.scores?.[k])).join("")+"</dl>"+row(t("notes"),v.notes)).join("");
- $("#detailBody").innerHTML='<div class="detail-scroll"><div class="detailtitle"><span class="chip">'+esc(x.status)+'</span><span class="meta">'+esc(x.id)+'</span></div><h2>'+esc(x.title)+'</h2><p class="meta">'+esc(x.author||"")+'</p>'+colorPanel(x)+'<h3>'+t("oak")+'</h3><dl>'+row(t("type"),x.oak?.type)+row(t("form"),x.oak?.form)+row(t("species"),x.oak?.species)+row(t("origin"),x.oak?.origin)+row(t("particle"),x.oak?.particleSize)+row(t("toast"),x.oak?.toast)+row(t("soaking"),p.soaking)+row(t("boiling"),p.boiling)+row(t("rinsing"),p.rinsing)+row(t("drying"),p.drying)+row(t("prep"),p.notes)+'</dl><h3>'+t("liquid")+'</h3><dl>'+row(t("base"),l.base)+row(t("abv"),l.abv,"%")+row(t("volume"),l.volumeMl," ml")+row(t("dose"),e.doseGPerL," g/L")+row(t("duration"),e.durationDays," "+t("days"))+row(t("temperature"),e.temperatureC," °C")+row(t("container"),e.container)+row(t("agitation"),e.agitation)+row(t("extraction"),e.notes)+'</dl><h3>'+t("observations")+'</h3><dl>'+row(t("appearance"),o.appearance)+row(t("aroma"),o.aroma)+row(t("taste"),o.taste)+row(t("mouthfeel"),o.mouthfeel)+row(t("overallNotes"),o.overallNotes)+'</dl>'+(tasting?"<h3>"+t("tastings")+"</h3>"+tasting:"")+'<h3>'+t("evidence")+'</h3><dl>'+row(t("sourceExp"),x.replication?.sourceId)+row(t("sourceNotes"),x.evidence?.sourceNotes)+"</dl></div>";
+ const tasting=ts.map(v=>`<h3>${t("firstTasting")} — ${esc(v.date||"")}</h3><div class="meta">${t("order")}: ${esc(v.order??"—")} · ${t("aging")}: ${esc(v.agingDays??"—")} ${t("days")} · ${t("total")}: ${esc(v.total??"—")}/50 · ${t("overall")}: ${esc(v.overall??"—")}/10</div><dl>${Object.entries(scoreLabels).map(([k,n])=>row(n,v.scores?.[k])).join("")}</dl>${row(t("notes"),v.notes)}`).join("");
+ $("#detailBody").innerHTML=`<div class="detail-scroll">
+   <div class="detailtitle"><span class="chip">${esc(x.status)}</span><span class="meta">${esc(x.id)}</span></div>
+   <h2>${esc(x.title)}</h2><p class="meta">${esc(x.author||"")}</p>
+   ${colorPanel(x)}
+   <h3>${t("oak")}</h3><dl>${row(t("type"),x.oak?.type)}${row(t("form"),x.oak?.form)}${row(t("species"),x.oak?.species)}${row(t("origin"),x.oak?.origin)}${row(t("particle"),x.oak?.particleSize)}${row(t("toast"),x.oak?.toast)}${row(t("soaking"),p.soaking)}${row(t("boiling"),p.boiling)}${row(t("rinsing"),p.rinsing)}${row(t("drying"),p.drying)}${row(t("prep"),p.notes)}</dl>
+   <h3>${t("liquid")}</h3><dl>${row(t("base"),l.base)}${row(t("abv"),l.abv,"%")}${row(t("volume"),l.volumeMl," ml")}${row(t("dose"),e.doseGPerL," g/L")}${row(t("duration"),e.durationDays," "+t("days"))}${row(t("temperature"),e.temperatureC," °C")}${row(t("container"),e.container)}${row(t("agitation"),e.agitation)}${row(t("extraction"),e.notes)}</dl>
+   <h3>${t("observations")}</h3><dl>${row(t("appearance"),o.appearance)}${row(t("aroma"),o.aroma)}${row(t("taste"),o.taste)}${row(t("mouthfeel"),o.mouthfeel)}${row(t("overallNotes"),o.overallNotes)}</dl>
+   ${tasting?`<h3>${t("tastings")}</h3>${tasting}`:""}
+   <h3>${t("evidence")}</h3><dl>${row(t("sourceExp"),x.replication?.sourceId)}${row(t("sourceNotes"),x.evidence?.sourceNotes)}</dl>
+ </div>`;
  $("#detail").showModal();
 }
 function updateCompareButton(){const n=selectedIds.size;$("#compare").textContent=n? t("compare")+" ("+n+")":t("compare")}
