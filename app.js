@@ -71,7 +71,7 @@ function num(v){return v===""?null:Number(v)}
 $("#language").onchange=e=>{lang=e.target.value;localStorage.setItem("oaklab-language",lang);applyLanguage()};
 $("#q").oninput=render;$("#toast").onchange=render;$("#compare").onclick=compare;
 $("#list").addEventListener("change",e=>{const box=e.target.closest(".compare-check");if(!box)return;if(box.checked)selectedIds.add(box.dataset.id);else selectedIds.delete(box.dataset.id);updateCompareButton();});
-$("#new").onclick=()=>$("#dlg").showModal();$("#close").onclick=()=>$("#dlg").close();$("#cancel").onclick=()=>$("#dlg").close();$("#detailClose").onclick=()=>$("#detail").close();
+$("#new").onclick=()=>$("#dlg").showModal();$("#close").onclick=()=>$("#dlg").close();$("#cancel").onclick=()=>$("#dlg").close();
 $("#list").onclick=e=>{const b=e.target.closest(".open");if(b){const x=data.find(v=>v.id===b.dataset.id);if(x)details(x)}};
 $("#form").onsubmit=e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target));data.unshift({schemaVersion:2,id:"LOCAL-"+Date.now(),status:"draft",title:f.title,author:f.author,oak:{type:f.oakType,form:f.form,toast:f.toast,preparation:{soaking:f.soaking||null,boiling:f.boiling||null}},liquid:{abv:num(f.abv),volumeMl:num(f.volumeMl)},extraction:{doseGPerL:num(f.doseGPerL),durationDays:num(f.durationDays),temperatureC:num(f.temperatureC)},observations:{overallNotes:f.notes||null},replication:{sourceId:f.sourceId||null},tastingSessions:[]});e.target.reset();$("#dlg").close();render()};
 $("#export").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify({schemaVersion:2,experiments:data},null,2)],{type:"application/json"}));a.download="oaklab-data-v2.json";a.click()};
