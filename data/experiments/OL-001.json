@@ -37,7 +37,13 @@
     "aroma": null,
     "taste": null,
     "mouthfeel": null,
-    "overallNotes": "Initial founding entry. Complete from original lab notes before public release."
+    "overallNotes": "Initial founding entry. Complete from original lab notes before public release.",
+    "color": {
+      "hex": "#DA914A",
+      "rgb": "218, 145, 74",
+      "srm": 7.2,
+      "source": "OakLab visual color record"
+    }
   },
   "replication": {
     "sourceId": null
