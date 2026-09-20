@@ -13,7 +13,8 @@
     "extraction",
     "observations",
     "replication",
-    "evidence"
+    "evidence",
+    "tastingSessions"
   ],
   "properties": {
     "schemaVersion": {
@@ -97,6 +98,168 @@
         "attachments",
         "sourceNotes"
       ]
+    },
+    "tastingSessions": {
+      "type": "array",
+      "description": "One or more sensory evaluation sessions. Scores use the OakLab 10-criterion 1–5 system; overall impression is separate 1–10 and excluded from total.",
+      "items": {
+        "type": "object",
+        "required": [
+          "date",
+          "scores",
+          "total",
+          "overall"
+        ],
+        "properties": {
+          "date": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "agingDays": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "order": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "scores": {
+            "type": "object",
+            "required": [
+              "aroma",
+              "softness",
+              "oak",
+              "vanilla",
+              "caramelToast",
+              "fruitNut",
+              "smokeChar",
+              "spirit",
+              "bitterness",
+              "astringency"
+            ],
+            "properties": {
+              "aroma": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 1,
+                "maximum": 5
+              },
+              "softness": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 1,
+                "maximum": 5
+              },
+              "oak": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 1,
+                "maximum": 5
+              },
+              "vanilla": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 1,
+                "maximum": 5
+              },
+              "caramelToast": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 1,
+                "maximum": 5
+              },
+              "fruitNut": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 1,
+                "maximum": 5
+              },
+              "smokeChar": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 1,
+                "maximum": 5
+              },
+              "spirit": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 1,
+                "maximum": 5
+              },
+              "bitterness": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 1,
+                "maximum": 5
+              },
+              "astringency": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 1,
+                "maximum": 5
+              }
+            },
+            "additionalProperties": false
+          },
+          "total": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 50
+          },
+          "overall": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 10
+          },
+          "notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "legacyCombinedBitternessTannin": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 5
+          }
+        },
+        "additionalProperties": false
+      }
     }
   }
 }
