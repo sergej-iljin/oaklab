@@ -52,22 +52,22 @@
     {
       "date": "2026-09-04",
       "agingDays": 35,
-      "order": null,
+      "order": 1,
       "scores": {
-        "aroma": null,
-        "softness": null,
-        "oak": null,
-        "vanilla": null,
-        "caramelToast": null,
-        "fruitNut": null,
-        "smokeChar": null,
-        "spirit": null,
-        "bitterness": null,
-        "astringency": null
+        "aroma": 1,
+        "softness": 1,
+        "oak": 1,
+        "vanilla": 1,
+        "caramelToast": 1,
+        "fruitNut": 1,
+        "smokeChar": 1,
+        "spirit": 1,
+        "bitterness": 1,
+        "astringency": 1
       },
-      "total": null,
-      "overall": null,
-      "notes": "First tasting. Source record exists in OakLab File Library; detailed new-system values are pending exact transcription."
+      "total": 10,
+      "overall": 1,
+      "notes": "First tasting — new scoring system. Transcribed from the tasting journal dated 04.09.2026."
     }
   ]
 }
