@@ -37,7 +37,13 @@
     "aroma": null,
     "taste": null,
     "mouthfeel": null,
-    "overallNotes": "Preparation recorded from the current project notes; other parameters remain unfilled until verified."
+    "overallNotes": "Preparation recorded from the current project notes; other parameters remain unfilled until verified.",
+    "color": {
+      "hex": "#8C1201",
+      "rgb": "140, 18, 1",
+      "srm": 12,
+      "source": "OakLab visual color record"
+    }
   },
   "replication": {
     "sourceId": null
