@@ -44,7 +44,20 @@ function details(x){
   $("#detail").showModal();
 }
 function num(v){return v===""?null:Number(v)}
-$("#q").oninput=render;$("#toast").onchange=render;
+const tastingKeys=["aroma","spirit","softness","oak","vanilla","caramelToast","fruitNut","smokeChar","bitterness","astringency"];
+const tastingNames={aroma:"Аромат",spirit:"Спиртуозность",softness:"Мягкость",oak:"Дуб",vanilla:"Ваниль",caramelToast:"Карамель",fruitNut:"Сухофрукты",smokeChar:"Дым",bitterness:"Горечь",astringency:"Терпкость"};
+function compare(){
+  const rows=data.map(x=>({x,t:(x.tastingSessions||[]).slice(-1)[0]})).filter(v=>v.t);
+  rows.sort((a,b)=>(a.t.order??999)-(b.t.order??999));
+  const head=tastingKeys.map(k=>"<th>"+tastingNames[k]+"</th>").join("");
+  const body=rows.map(({x,t})=>{
+    const s=t.scores||{};
+    return "<tr><td><strong>"+esc(x.title)+"</strong></td><td>"+esc(t.order??"—")+"</td>"+tastingKeys.map(k=>"<td>"+esc(s[k]??"—")+"</td>").join("")+"<td class=\"compare-total\">"+esc(t.total??"—")+"/50</td><td class=\"compare-total\">"+esc(t.overall??"—")+"/10</td></tr>";
+  }).join("");
+  $("#compareBody").innerHTML="<p class=\"compare-note\">Последняя внесённая дегустация каждого образца. Порядок — порядок дегустации.</p><div class=\"compare-wrap\"><table class=\"compare-table\"><thead><tr><th>Образец</th><th>Порядок</th>"+head+"<th>Итог</th><th>Общее</th></tr></thead><tbody>"+body+"</tbody></table></div>";
+  $("#compareDlg").showModal();
+}
+$("#q").oninput=render;$("#toast").onchange=render;$("#compare").onclick=compare;
 $("#new").onclick=()=>$("#dlg").showModal();$("#close").onclick=()=>$("#dlg").close();$("#cancel").onclick=()=>$("#dlg").close();
 $("#list").onclick=e=>{const b=e.target.closest(".open");if(b){const x=data.find(v=>v.id===b.dataset.id);if(x)details(x)}};
 $("#detailClose").onclick=()=>$("#detail").close();
