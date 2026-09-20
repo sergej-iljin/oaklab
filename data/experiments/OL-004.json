@@ -3,7 +3,7 @@
   "status": "draft",
   "title": "C-M",
   "author": "Founding dataset",
-  "createdAt": null,
+  "createdAt": "2026-07-27",
   "oak": {
     "type": "C-M",
     "species": null,
@@ -12,25 +12,25 @@
     "particleSize": null,
     "toast": "Medium",
     "preparation": {
-      "soaking": null,
-      "boiling": null,
+      "soaking": "24 h",
+      "boiling": "15 min",
       "rinsing": null,
       "drying": null,
-      "notes": null
+      "notes": "160 °C 60 min; 190 °C 45 min"
     }
   },
   "liquid": {
-    "base": null,
-    "abv": null,
-    "volumeMl": null
+    "base": "sugar distillate",
+    "abv": 55,
+    "volumeMl": 300
   },
   "extraction": {
-    "doseGPerL": null,
-    "durationDays": null,
+    "doseGPerL": 8.333333,
+    "durationDays": 35,
     "temperatureC": null,
-    "container": null,
-    "agitation": null,
-    "notes": null
+    "container": "glass jar",
+    "agitation": "periodic shaking",
+    "notes": "First comparative series; 2.5 g oak per 300 ml. Additional components not used."
   },
   "observations": {
     "appearance": null,
@@ -46,5 +46,29 @@
     "photos": [],
     "attachments": [],
     "sourceNotes": null
-  }
+  },
+  "schemaVersion": 2,
+  "tastingSessions": [
+    {
+      "date": "2026-09-04",
+      "agingDays": 35,
+      "order": null,
+      "scores": {
+        "aroma": null,
+        "softness": null,
+        "oak": null,
+        "vanilla": null,
+        "caramelToast": null,
+        "fruitNut": null,
+        "smokeChar": null,
+        "spirit": null,
+        "bitterness": null,
+        "astringency": null
+      },
+      "total": null,
+      "overall": null,
+      "notes": "First tasting. Source record exists in OakLab File Library; detailed new-system values are pending exact transcription.",
+      "legacyCombinedBitternessTannin": null
+    }
+  ]
 }
