@@ -30,6 +30,21 @@ for (const meta of index.experiments) {
   if (file.id !== meta.id) throw new Error(meta.id + ": index id does not match record id");
   validateRecord(file);
   if (meta.status !== file.status || meta.title !== file.title || meta.author !== file.author) throw new Error(meta.id + ": index metadata does not match record");
+  if (!Array.isArray(file.tastingSessions)) throw new Error(meta.id + ": tastingSessions must be an array");
+  for (const [i, t] of file.tastingSessions.entries()) {
+    if (typeof t.date !== "string") throw new Error(meta.id + ": tasting session " + i + " date is required");
+    if (t.order != null && (!Number.isInteger(t.order) || t.order < 1)) throw new Error(meta.id + ": invalid tasting order");
+    if (t.agingDays != null && (typeof t.agingDays !== "number" || t.agingDays < 0)) throw new Error(meta.id + ": invalid tasting agingDays");
+    if (!t.scores || typeof t.scores !== "object") throw new Error(meta.id + ": tasting session " + i + " scores are required");
+    const keys = ["aroma","softness","oak","vanilla","caramelToast","fruitNut","smokeChar","spirit","bitterness","astringency"];
+    for (const key of keys) {
+      const value = t.scores[key];
+      if (typeof value !== "number" || value < 1 || value > 5) throw new Error(meta.id + ": invalid " + key + " score");
+    }
+    const calculated = keys.reduce((sum, key) => sum + t.scores[key], 0);
+    if (t.total !== calculated) throw new Error(meta.id + ": tasting total does not equal score sum");
+    if (typeof t.overall !== "number" || t.overall < 1 || t.overall > 10) throw new Error(meta.id + ": invalid overall tasting score");
+  }
   const expectedSource = file.replication?.sourceId ?? null;
   if ((meta.sourceId ?? null) !== expectedSource) throw new Error(meta.id + ": index sourceId does not match record");
 }
