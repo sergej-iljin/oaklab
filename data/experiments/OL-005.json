@@ -33,7 +33,7 @@
     "notes": "First comparative series; 2.5 g oak per 300 ml. Additional components not used."
   },
   "observations": {
-    "appearance": null,
+    "appearance": "Фото 04.09.2026: насыщенный янтарно-золотистый оттенок, прозрачный.",
     "aroma": null,
     "taste": null,
     "mouthfeel": null,
@@ -43,9 +43,11 @@
     "sourceId": null
   },
   "evidence": {
-    "photos": [],
+    "photos": [
+      "first-tasting-photo-set-2026-09-04"
+    ],
     "attachments": [],
-    "sourceNotes": null
+    "sourceNotes": "First tasting visual evidence: three uploaded photos dated 04.09.2026 showing samples 1–8. Visual appearance notes are descriptive only and are not sensory scores."
   },
   "schemaVersion": 2,
   "tastingSessions": [
