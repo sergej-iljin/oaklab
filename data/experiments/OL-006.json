@@ -37,7 +37,13 @@
     "aroma": null,
     "taste": null,
     "mouthfeel": null,
-    "overallNotes": "Initial founding entry."
+    "overallNotes": "Initial founding entry.",
+    "color": {
+      "hex": "#611401",
+      "rgb": "97, 20, 1",
+      "srm": 14.8,
+      "source": "OakLab visual color record"
+    }
   },
   "replication": {
     "sourceId": null
