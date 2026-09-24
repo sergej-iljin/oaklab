@@ -30,16 +30,17 @@ const baseText=x=>x==="sugar distillate"?v("sugarDistillate"):x;
 const containerText=x=>x==="glass jar"?v("glassJar"):x;
 const agitationText=x=>x==="periodic shaking"?v("periodicShaking"):x;
 const authorText=x=>x==="Founding dataset"?v("founding"):x;
-const durationText=(x)=>x==null||x===""?x:lang==="ru"?String(x).replace(/\\bh\\b/g,"ч").replace(/\\bmin\\b/g,"мин"):x;
-const scoreNames={
-  ru:["Аромат","Спиртуозность","Мягкость","Дуб","Ваниль","Карамель","Сухофрукты","Дым","Горечь","Терпкость"],
-  en:["Aroma","Spirit","Softness","Oak","Vanilla","Caramel","Dried fruit","Smoke","Bitterness","Astringency"],
-  de:["Aroma","Spirituosität","Weichheit","Eiche","Vanille","Karamell","Trockenfrüchte","Rauch","Bitterkeit","Adstringenz"],
-  fr:["Arôme","Alcool","Douceur","Chêne","Vanille","Caramel","Fruits secs","Fumée","Amertume","Astringence"],
-  es:["Aroma","Alcohol","Suavidad","Roble","Vainilla","Caramelo","Frutos secos","Humo","Amargor","Astringencia"],
-  it:["Aroma","Alcol","Morbidezza","Rovere","Vaniglia","Caramello","Frutta secca","Fumo","Amarezza","Astringenza"],
-  pt:["Aroma","Álcool","Suavidade","Carvalho","Baunilha","Caramelo","Frutos secos","Fumo","Amargor","Adstringência"]
+const durationText=(x)=>x==null||x===""?x:lang==="ru"?String(x).replace(/\bh\b/g,"ч").replace(/\bmin\b/g,"мин"):x;
+const scoreLabels={
+  ru:{aroma:"Аромат",softness:"Мягкость",oak:"Дуб / древесность",vanilla:"Ваниль",caramelToast:"Карамель / обжарка",fruitNut:"Сухофрукты / орехи",smokeChar:"Дым / обугленность",spirit:"Спиртуозность",bitterness:"Горечь",astringency:"Терпкость"},
+  en:{aroma:"Aroma",softness:"Softness",oak:"Oak / wood",vanilla:"Vanilla",caramelToast:"Caramel / toast",fruitNut:"Dried fruit / nuts",smokeChar:"Smoke / char",spirit:"Spirit",bitterness:"Bitterness",astringency:"Astringency"},
+  de:{aroma:"Aroma",softness:"Weichheit",oak:"Eiche / Holz",vanilla:"Vanille",caramelToast:"Karamell / Röstung",fruitNut:"Trockenfrüchte / Nüsse",smokeChar:"Rauch / Verkohlung",spirit:"Spirituosität",bitterness:"Bitterkeit",astringency:"Adstringenz"},
+  fr:{aroma:"Arôme",softness:"Douceur",oak:"Chêne / bois",vanilla:"Vanille",caramelToast:"Caramel / chauffe",fruitNut:"Fruits secs / noix",smokeChar:"Fumée / charbon",spirit:"Alcool",bitterness:"Amertume",astringency:"Astringence"},
+  es:{aroma:"Aroma",softness:"Suavidad",oak:"Roble / madera",vanilla:"Vainilla",caramelToast:"Caramelo / tostado",fruitNut:"Frutos secos / nueces",smokeChar:"Humo / carbonizado",spirit:"Alcohol",bitterness:"Amargor",astringency:"Astringencia"},
+  it:{aroma:"Aroma",softness:"Morbidezza",oak:"Rovere / legno",vanilla:"Vaniglia",caramelToast:"Caramello / tostatura",fruitNut:"Frutta secca / noci",smokeChar:"Fumo / carbonizzato",spirit:"Alcol",bitterness:"Amarezza",astringency:"Astringenza"},
+  pt:{aroma:"Aroma",softness:"Suavidade",oak:"Carvalho / madeira",vanilla:"Baunilha",caramelToast:"Caramelo / tosta",fruitNut:"Frutos secos / nozes",smokeChar:"Fumo / carbonizado",spirit:"Álcool",bitterness:"Amargor",astringency:"Adstringência"}
 };
+const scoreLabelText=k=>scoreLabels[lang]?.[k]||scoreLabels.en[k]||k;
 const esc=v=>String(v??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 function color(x){return x.observations?.color||null}
 function glass(x,large=false){
@@ -92,8 +93,8 @@ function card(x){
 function details(x){
  const p=x.oak?.preparation||{},e=x.extraction||{},l=x.liquid||{},o=x.observations||{},ts=x.tastingSessions||[];
  const row=(label,v,unit="")=>v!=null&&v!==""?`<div><dt>${label}</dt><dd>${esc(v)}${unit}</dd></div>`:"";
- const scoreKeys=["aroma","softness","oak","vanilla","caramelToast","fruitNut","smokeChar","spirit","bitterness","astringency"]; const scoreLabels=Object.fromEntries(scoreKeys.map((k,i)=>[k,scoreNames[lang]?.[i]||scoreNames.en[i]]));
- const tasting=ts.map(v=>`<h3>${t("firstTasting")} — ${esc(v.date||"")}</h3><div class="meta">${t("order")}: ${esc(v.order??"—")} · ${t("aging")}: ${esc(v.agingDays??"—")} ${t("days")} · ${t("total")}: ${esc(v.total??"—")}/50 · ${t("overall")}: ${esc(v.overall??"—")}/10</div><dl>${Object.entries(scoreLabels).map(([k,n])=>row(n,v.scores?.[k])).join("")}</dl>${row(t("notes"),v.notes)}`).join("");
+ const scoreKeys=["aroma","softness","oak","vanilla","caramelToast","fruitNut","smokeChar","spirit","bitterness","astringency"];
+ const tasting=ts.map(v=>`<h3>${t("firstTasting")} — ${esc(v.date||"")}</h3><div class="meta">${t("order")}: ${esc(v.order??"—")} · ${t("aging")}: ${esc(v.agingDays??"—")} ${t("days")} · ${t("total")}: ${esc(v.total??"—")}/50 · ${t("overall")}: ${esc(v.overall??"—")}/10</div><dl>${Object.entries(scoreLabels).map(([k,n])=>row(scoreLabelText(k),v.scores?.[k])).join("")}</dl>${row(t("notes"),v.notes)}`).join("");
  $("#detailBody").innerHTML=`<div class="detail-scroll">
    <div class="detailtitle"><span class="chip">${esc(statusText(x.status))}</span><span class="meta">${esc(x.id)}</span></div>
    <h2>${esc(x.title)}</h2><p class="meta">${esc(authorText(x.author||""))}</p>
@@ -110,7 +111,7 @@ function updateCompareButton(){const n=selectedIds.size;$("#compare").textConten
 function compare(){
  const rows=data.filter(x=>selectedIds.has(x.id)).map(x=>({x,t:(x.tastingSessions||[]).slice(-1)[0]})).filter(v=>v.t).sort((a,b)=>(a.t.order??999)-(b.t.order??999));
  const keys=["aroma","spirit","softness","oak","vanilla","caramelToast","fruitNut","smokeChar","bitterness","astringency"];
- const names=scoreNames[lang]||scoreNames.en;
+ const names=keys.map(scoreLabelText);
  const body=rows.map(({x,t})=>'<tr><td>'+esc(x.title)+'</td><td>'+esc(t.order??"—")+'</td>'+keys.map(k=>'<td>'+esc(t.scores?.[k]??"—")+"</td>").join("")+'<td><b>'+esc(t.total??"—")+"/50</b></td><td><b>"+esc(t.overall??"—")+"/10</b></td></tr>").join("");
  if(!rows.length){$("#compareBody").innerHTML="<p class=\"compare-note\">"+t("selectForCompare")+": 1 "+t("sample")+"</p>";$("#compareDlg").showModal();return;} $("#compareBody").innerHTML='<div class="compare-scroll"><table class="compare-table"><thead><tr><th>'+t("sample")+'</th><th>'+t("order")+'</th>'+names.map(n=>"<th>"+n+"</th>").join("")+"<th>"+t("total")+"</th><th>"+t("overall")+"</th></tr></thead><tbody>"+body+"</tbody></table></div>";
  $("#compareDlg").showModal();
