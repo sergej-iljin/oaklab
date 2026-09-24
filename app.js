@@ -13,6 +13,33 @@ it:{subtitle:"Database aperto degli esperimenti con rovere",language:"Lingua",co
 pt:{subtitle:"Base aberta de experiências com carvalho",language:"Idioma",compare:"Comparar",newExp:"+ Nova experiência",hero:"Partilhe. Reproduza. Compare.",intro:"Base aberta estruturada para experiências com carvalho.",search:"Pesquisar experiências…",allToast:"Todos os níveis de tosta",export:"Exportar JSON",experiments:"Experiências",shown:"mostradas",contributors:"colaboradores",replications:"replicações",view:"Abrir experiência",detail:"Experiência",oak:"Carvalho",liquid:"Líquido e extração",observations:"Observações",tastings:"Degustações",evidence:"Replicação e fontes",color:"Cor",srm:"Cor (SRM)",hex:"HEX",rgb:"RGB",colorDb:"Cor da base de dados",compareWith:"Comparação das cores",compareTitle:"Comparação de degustações",sample:"Amostra",order:"Ordem",total:"Total",overall:"Geral",title:"Título",author:"Autor",oakType:"Tipo de carvalho",toast:"Tosta",oakForm:"Forma",chips:"Aparas",cubes:"Cubos",stave:"Tábua",other:"Outro",volume:"Volume ml",dose:"Dose de carvalho g/L",duration:"Duração dias",temperature:"Temperatura °C",soaking:"Demolha",boiling:"Fervura",sourceId:"ID de origem",notes:"Notas",newTitle:"Nova experiência",cancel:"Cancelar",create:"Criar rascunho local",base:"Base",abv:"ABV",container:"Recipiente",agitation:"Agitação",type:"Tipo",form:"Forma",species:"Espécie",origin:"Origem",particle:"Tamanho das partículas",rinsing:"Enxaguamento",drying:"Secagem",prep:"Notas de preparação",extraction:"Notas de extração",appearance:"Aspeto",aroma:"Aroma",taste:"Sabor",mouthfeel:"Sensação na boca",overallNotes:"Notas gerais",sourceExp:"Experiência de origem",sourceNotes:"Notas de origem",firstTasting:"Degustação",aging:"Envelhecimento",days:"dias",noData:"Nenhuma experiência correspondente.",loadError:"Não foi possível carregar os dados."}
 };
 const t=k=>(I[lang]||I.ru)[k]||I.ru[k]||k;
+const V={
+  ru:{draft:"черновик",founding:"Исходный набор данных",chips:"Щепа",cubes:"Кубики",stave:"Планка",other:"Другое",light:"Лёгкая",medium:"Средняя",mediumPlus:"Средняя+",heavy:"Сильная",char:"Обугливание",sugarDistillate:"сахарный дистиллят",glassJar:"стеклянная банка",periodicShaking:"периодическое встряхивание"},
+  en:{draft:"draft",founding:"Founding dataset",chips:"chips",cubes:"cubes",stave:"stave",other:"other",light:"Light",medium:"Medium",mediumPlus:"Medium+",heavy:"Heavy",char:"Char",sugarDistillate:"sugar distillate",glassJar:"glass jar",periodicShaking:"periodic shaking"},
+  de:{draft:"Entwurf",founding:"Ausgangsdatensatz",chips:"Chips",cubes:"Würfel",stave:"Stave",other:"Andere",light:"Leicht",medium:"Mittel",mediumPlus:"Mittel+",heavy:"Stark",char:"Verkohlt",sugarDistillate:"Zuckerdestillat",glassJar:"Glasgefäß",periodicShaking:"regelmäßiges Schütteln"},
+  fr:{draft:"brouillon",founding:"jeu de données initial",chips:"copeaux",cubes:"cubes",stave:"douelle",other:"autre",light:"Légère",medium:"Moyenne",mediumPlus:"Moyenne+",heavy:"Forte",char:"Charbonnée",sugarDistillate:"distillat de sucre",glassJar:"bocal en verre",periodicShaking:"agitation périodique"},
+  es:{draft:"borrador",founding:"conjunto de datos inicial",chips:"virutas",cubes:"cubos",stave:"listón",other:"otro",light:"Ligero",medium:"Medio",mediumPlus:"Medio+",heavy:"Fuerte",char:"Carbonizado",sugarDistillate:"destilado de azúcar",glassJar:"frasco de vidrio",periodicShaking:"agitación periódica"},
+  it:{draft:"bozza",founding:"dataset iniziale",chips:"scaglie",cubes:"cubetti",stave:"listello",other:"altro",light:"Leggera",medium:"Media",mediumPlus:"Media+",heavy:"Forte",char:"Carbonizzato",sugarDistillate:"distillato di zucchero",glassJar:"barattolo di vetro",periodicShaking:"agitazione periodica"},
+  pt:{draft:"rascunho",founding:"conjunto de dados inicial",chips:"aparas",cubes:"cubos",stave:"tábua",other:"outro",light:"Leve",medium:"Média",mediumPlus:"Média+",heavy:"Forte",char:"Carbonizado",sugarDistillate:"destilado de açúcar",glassJar:"frasco de vidro",periodicShaking:"agitação periódica"}
+};
+const v=(k)=>V[lang]?.[k]??V.en[k]??k;
+const statusText=x=>x==="draft"?v("draft"):x;
+const formText=x=>({chips:v("chips"),cubes:v("cubes"),stave:v("stave"),other:v("other")}[x]||x);
+const toastText=x=>({Light:v("light"),Medium:v("medium"),"Medium+":v("mediumPlus"),Heavy:v("heavy"),Char:v("char")}[x]||x);
+const baseText=x=>x==="sugar distillate"?v("sugarDistillate"):x;
+const containerText=x=>x==="glass jar"?v("glassJar"):x;
+const agitationText=x=>x==="periodic shaking"?v("periodicShaking"):x;
+const authorText=x=>x==="Founding dataset"?v("founding"):x;
+const durationText=(x)=>x==null||x===""?x:lang==="ru"?String(x).replace(/\\bh\\b/g,"ч").replace(/\\bmin\\b/g,"мин"):x;
+const scoreNames={
+  ru:["Аромат","Спиртуозность","Мягкость","Дуб","Ваниль","Карамель","Сухофрукты","Дым","Горечь","Терпкость"],
+  en:["Aroma","Spirit","Softness","Oak","Vanilla","Caramel","Dried fruit","Smoke","Bitterness","Astringency"],
+  de:["Aroma","Spirituosität","Weichheit","Eiche","Vanille","Karamell","Trockenfrüchte","Rauch","Bitterkeit","Adstringenz"],
+  fr:["Arôme","Alcool","Douceur","Chêne","Vanille","Caramel","Fruits secs","Fumée","Amertume","Astringence"],
+  es:["Aroma","Alcohol","Suavidad","Roble","Vainilla","Caramelo","Frutos secos","Humo","Amargor","Astringencia"],
+  it:["Aroma","Alcol","Morbidezza","Rovere","Vaniglia","Caramello","Frutta secca","Fumo","Amarezza","Astringenza"],
+  pt:["Aroma","Álcool","Suavidade","Carvalho","Baunilha","Caramelo","Frutos secos","Fumo","Amargor","Adstringência"]
+};
 const esc=v=>String(v??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 function color(x){return x.observations?.color||null}
 function glass(x,large=false){
@@ -48,13 +75,13 @@ function render(){
 function card(x){
  const c=color(x),children=data.filter(y=>y.replication?.sourceId===x.id).length;
  let chips="";
- if(x.oak?.toast)chips+=`<span class="chip">${esc(x.oak.toast)}</span>`;
+ if(x.oak?.toast)chips+=`<span class="chip">${esc(toastText(x.oak.toast))}</span>`;
  if(x.liquid?.abv!=null)chips+=`<span class="chip">${x.liquid.abv}% ABV</span>`;
  if(x.extraction?.doseGPerL!=null)chips+=`<span class="chip">${x.extraction.doseGPerL} g/L</span>`;
  if(x.extraction?.durationDays!=null)chips+=`<span class="chip">${x.extraction.durationDays} ${t("days")}</span>`;
  return `<article class="card">
    <label class="card-select"><input type="checkbox" class="compare-check" data-id="${esc(x.id)}" ${selectedIds.has(x.id)?"checked":""}><span>${t("selectForCompare")}</span></label>
-   <div class="card-top">${c?glass(x,false):""}<div><h3>${esc(x.title)}</h3><div class="meta">${esc(x.oak?.type||"")} · ${esc(x.oak?.form||"")} · ${esc(x.author||"")}</div></div></div>
+   <div class="card-top">${c?glass(x,false):""}<div><h3>${esc(x.title)}</h3><div class="meta">${esc(x.oak?.type||"")} · ${esc(formText(x.oak?.form||""))} · ${esc(authorText(x.author||""))}</div></div></div>
    <div class="chips">${chips}</div>
    ${x.replication?.sourceId?`<div class="meta">↳ ${esc(x.replication.sourceId)}</div>`:""}
    <small>${children} ${t("replications")}</small>
@@ -65,14 +92,14 @@ function card(x){
 function details(x){
  const p=x.oak?.preparation||{},e=x.extraction||{},l=x.liquid||{},o=x.observations||{},ts=x.tastingSessions||[];
  const row=(label,v,unit="")=>v!=null&&v!==""?`<div><dt>${label}</dt><dd>${esc(v)}${unit}</dd></div>`:"";
- const scoreLabels={aroma:"Аромат",softness:"Мягкость",oak:"Дуб / древесность",vanilla:"Ваниль",caramelToast:"Карамель / обжарка",fruitNut:"Сухофрукты / орехи",smokeChar:"Дым / обугленность",spirit:"Спиртуозность",bitterness:"Горечь",astringency:"Терпкость"};
+ const scoreKeys=["aroma","softness","oak","vanilla","caramelToast","fruitNut","smokeChar","spirit","bitterness","astringency"]; const scoreLabels=Object.fromEntries(scoreKeys.map((k,i)=>[k,scoreNames[lang]?.[i]||scoreNames.en[i]]));
  const tasting=ts.map(v=>`<h3>${t("firstTasting")} — ${esc(v.date||"")}</h3><div class="meta">${t("order")}: ${esc(v.order??"—")} · ${t("aging")}: ${esc(v.agingDays??"—")} ${t("days")} · ${t("total")}: ${esc(v.total??"—")}/50 · ${t("overall")}: ${esc(v.overall??"—")}/10</div><dl>${Object.entries(scoreLabels).map(([k,n])=>row(n,v.scores?.[k])).join("")}</dl>${row(t("notes"),v.notes)}`).join("");
  $("#detailBody").innerHTML=`<div class="detail-scroll">
-   <div class="detailtitle"><span class="chip">${esc(x.status)}</span><span class="meta">${esc(x.id)}</span></div>
-   <h2>${esc(x.title)}</h2><p class="meta">${esc(x.author||"")}</p>
+   <div class="detailtitle"><span class="chip">${esc(statusText(x.status))}</span><span class="meta">${esc(x.id)}</span></div>
+   <h2>${esc(x.title)}</h2><p class="meta">${esc(authorText(x.author||""))}</p>
    ${colorPanel(x)}
-   <h3>${t("oak")}</h3><dl>${row(t("type"),x.oak?.type)}${row(t("form"),x.oak?.form)}${row(t("species"),x.oak?.species)}${row(t("origin"),x.oak?.origin)}${row(t("particle"),x.oak?.particleSize)}${row(t("toast"),x.oak?.toast)}${row(t("soaking"),p.soaking)}${row(t("boiling"),p.boiling)}${row(t("rinsing"),p.rinsing)}${row(t("drying"),p.drying)}${row(t("prep"),p.notes)}</dl>
-   <h3>${t("liquid")}</h3><dl>${row(t("base"),l.base)}${row(t("abv"),l.abv,"%")}${row(t("volume"),l.volumeMl," ml")}${row(t("dose"),e.doseGPerL," g/L")}${row(t("duration"),e.durationDays," "+t("days"))}${row(t("temperature"),e.temperatureC," °C")}${row(t("container"),e.container)}${row(t("agitation"),e.agitation)}${row(t("extraction"),e.notes)}</dl>
+   <h3>${t("oak")}</h3><dl>${row(t("type"),x.oak?.type)}${row(t("form"),formText(x.oak?.form))}${row(t("species"),x.oak?.species)}${row(t("origin"),x.oak?.origin)}${row(t("particle"),x.oak?.particleSize)}${row(t("toast"),toastText(x.oak?.toast))}${row(t("soaking"),durationText(p.soaking))}${row(t("boiling"),durationText(p.boiling))}${row(t("rinsing"),p.rinsing)}${row(t("drying"),p.drying)}${row(t("prep"),p.notes)}</dl>
+   <h3>${t("liquid")}</h3><dl>${row(t("base"),baseText(l.base))}${row(t("abv"),l.abv,"%")}${row(t("volume"),l.volumeMl," ml")}${row(t("dose"),e.doseGPerL," g/L")}${row(t("duration"),e.durationDays," "+t("days"))}${row(t("temperature"),e.temperatureC," °C")}${row(t("container"),containerText(e.container))}${row(t("agitation"),agitationText(e.agitation))}${row(t("extraction"),e.notes)}</dl>
    <h3>${t("observations")}</h3><dl>${row(t("appearance"),o.appearance)}${row(t("aroma"),o.aroma)}${row(t("taste"),o.taste)}${row(t("mouthfeel"),o.mouthfeel)}${row(t("overallNotes"),o.overallNotes)}</dl>
    ${tasting?`<h3>${t("tastings")}</h3>${tasting}`:""}
    <h3>${t("evidence")}</h3><dl>${row(t("sourceExp"),x.replication?.sourceId)}${row(t("sourceNotes"),x.evidence?.sourceNotes)}</dl>
@@ -83,7 +110,7 @@ function updateCompareButton(){const n=selectedIds.size;$("#compare").textConten
 function compare(){
  const rows=data.filter(x=>selectedIds.has(x.id)).map(x=>({x,t:(x.tastingSessions||[]).slice(-1)[0]})).filter(v=>v.t).sort((a,b)=>(a.t.order??999)-(b.t.order??999));
  const keys=["aroma","spirit","softness","oak","vanilla","caramelToast","fruitNut","smokeChar","bitterness","astringency"];
- const names=["Аромат","Спиртуозность","Мягкость","Дуб","Ваниль","Карамель","Сухофрукты","Дым","Горечь","Терпкость"];
+ const names=scoreNames[lang]||scoreNames.en;
  const body=rows.map(({x,t})=>'<tr><td>'+esc(x.title)+'</td><td>'+esc(t.order??"—")+'</td>'+keys.map(k=>'<td>'+esc(t.scores?.[k]??"—")+"</td>").join("")+'<td><b>'+esc(t.total??"—")+"/50</b></td><td><b>"+esc(t.overall??"—")+"/10</b></td></tr>").join("");
  if(!rows.length){$("#compareBody").innerHTML="<p class=\"compare-note\">"+t("selectForCompare")+": 1 "+t("sample")+"</p>";$("#compareDlg").showModal();return;} $("#compareBody").innerHTML='<div class="compare-scroll"><table class="compare-table"><thead><tr><th>'+t("sample")+'</th><th>'+t("order")+'</th>'+names.map(n=>"<th>"+n+"</th>").join("")+"<th>"+t("total")+"</th><th>"+t("overall")+"</th></tr></thead><tbody>"+body+"</tbody></table></div>";
  $("#compareDlg").showModal();
