@@ -88,14 +88,15 @@
         "oak": 2,
         "vanilla": 1,
         "caramelToast": 1,
-        "fruitNut": 0,
+        "fruitNut": 1,
         "smokeChar": 2,
         "bitterness": 2,
         "astringency": 3
       },
-      "total": 15,
+      "total": 16,
       "overall": 4,
-      "notes": "Second independent tasting — Александр; 25.09.2026; 2 months aging. Separate tasting result. Scores transcribed from the tasting sheet. Overall impression is separate and excluded from total 0–50."
+      "notes": "Second independent tasting — Александр; 25.09.2026; 2 months aging. Separate tasting result. Scores transcribed from the tasting sheet. Overall impression is separate and excluded from total 0–50.",
+      "taster": "Александр"
     }
   ]
 }
