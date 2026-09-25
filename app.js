@@ -31,6 +31,78 @@ const containerText=x=>x==="glass jar"?v("glassJar"):x;
 const agitationText=x=>x==="periodic shaking"?v("periodicShaking"):x;
 const authorText=x=>x==="Founding dataset"?v("founding"):x;
 const durationText=(x)=>x==null||x===""?x:lang==="ru"?String(x).replace(/\bh\b/g,"ч").replace(/\bmin\b/g,"мин"):x;
+const DATA_TEXT={
+ru:{
+"Initial founding entry. Complete from original lab notes before public release.":"Исходная запись набора данных. Заполнена по исходным лабораторным заметкам перед публичной публикацией.",
+"Initial founding entry.":"Исходная запись набора данных.",
+"Preparation recorded from the current project notes; other parameters remain unfilled until verified.":"Подготовка записана по текущим заметкам проекта; остальные параметры не заполнены до проверки.",
+"First comparative series; 2.5 g oak per 300 ml. Additional components not used.":"Первая сравнительная серия; 2,5 г дуба на 300 мл. Дополнительные компоненты не использовались.",
+"First tasting — new scoring system. Transcribed from the tasting journal dated 04.09.2026.":"Первая дегустация — новая система оценки. Перенесено из журнала дегустации от 04.09.2026.",
+"First tasting visual evidence: three uploaded photos dated 04.09.2026 showing samples 1–8. Visual appearance notes are descriptive only and are not sensory scores.":"Визуальные материалы первой дегустации: три загруженные фотографии от 04.09.2026 с образцами 1–8. Описание внешнего вида носит только описательный характер и не является сенсорной оценкой.",
+"OakLab visual color record":"Визуальная запись цвета OakLab",
+"220 °C; no additional charring":"220 °C; дополнительное обугливание не проводилось."
+},
+en:{
+"Initial founding entry. Complete from original lab notes before public release.":"Initial founding entry. Complete from original lab notes before public release.",
+"Initial founding entry.":"Initial founding entry.",
+"Preparation recorded from the current project notes; other parameters remain unfilled until verified.":"Preparation recorded from the current project notes; other parameters remain unfilled until verified.",
+"First comparative series; 2.5 g oak per 300 ml. Additional components not used.":"First comparative series; 2.5 g oak per 300 ml. Additional components not used.",
+"First tasting — new scoring system. Transcribed from the tasting journal dated 04.09.2026.":"First tasting — new scoring system. Transcribed from the tasting journal dated 04.09.2026.",
+"First tasting visual evidence: three uploaded photos dated 04.09.2026 showing samples 1–8. Visual appearance notes are descriptive only and are not sensory scores.":"First tasting visual evidence: three uploaded photos dated 04.09.2026 showing samples 1–8. Visual appearance notes are descriptive only and are not sensory scores.",
+"OakLab visual color record":"OakLab visual color record",
+"220 °C; no additional charring":"220 °C; no additional charring"
+},
+de:{
+"Initial founding entry. Complete from original lab notes before public release.":"Ursprünglicher Datensatz-Eintrag. Vor der Veröffentlichung anhand der ursprünglichen Labornotizen vervollständigt.",
+"Initial founding entry.":"Ursprünglicher Datensatz-Eintrag.",
+"Preparation recorded from the current project notes; other parameters remain unfilled until verified.":"Die Vorbereitung wurde aus den aktuellen Projektnotizen übernommen; weitere Parameter bleiben bis zur Überprüfung offen.",
+"First comparative series; 2.5 g oak per 300 ml. Additional components not used.":"Erste Vergleichsserie; 2,5 g Eiche auf 300 ml. Zusätzliche Komponenten wurden nicht verwendet.",
+"First tasting — new scoring system. Transcribed from the tasting journal dated 04.09.2026.":"Erste Verkostung — neues Bewertungssystem. Aus dem Verkostungsjournal vom 04.09.2026 übertragen.",
+"First tasting visual evidence: three uploaded photos dated 04.09.2026 showing samples 1–8. Visual appearance notes are descriptive only and are not sensory scores.":"Visuelle Belege der ersten Verkostung: drei am 04.09.2026 hochgeladene Fotos mit den Proben 1–8. Die Angaben zum Aussehen sind ausschließlich beschreibend und keine sensorischen Bewertungen.",
+"OakLab visual color record":"Visuelle Farbdokumentation von OakLab",
+"220 °C; no additional charring":"220 °C; keine zusätzliche Verkohlung"
+},
+fr:{
+"Initial founding entry. Complete from original lab notes before public release.":"Entrée initiale du jeu de données. Complétée à partir des notes de laboratoire originales avant publication.",
+"Initial founding entry.":"Entrée initiale du jeu de données.",
+"Preparation recorded from the current project notes; other parameters remain unfilled until verified.":"Préparation relevée dans les notes actuelles du projet ; les autres paramètres restent à compléter jusqu'à vérification.",
+"First comparative series; 2.5 g oak per 300 ml. Additional components not used.":"Première série comparative ; 2,5 g de chêne pour 300 ml. Aucun composant supplémentaire utilisé.",
+"First tasting — new scoring system. Transcribed from the tasting journal dated 04.09.2026.":"Première dégustation — nouveau système d'évaluation. Transcrit du journal de dégustation daté du 04.09.2026.",
+"First tasting visual evidence: three uploaded photos dated 04.09.2026 showing samples 1–8. Visual appearance notes are descriptive only and are not sensory scores.":"Preuves visuelles de la première dégustation : trois photos mises en ligne le 04.09.2026 montrant les échantillons 1 à 8. Les notes d'aspect sont uniquement descriptives et ne constituent pas des évaluations sensorielles.",
+"OakLab visual color record":"Relevé visuel de couleur OakLab",
+"220 °C; no additional charring":"220 °C ; sans carbonisation supplémentaire"
+},
+es:{
+"Initial founding entry. Complete from original lab notes before public release.":"Entrada inicial del conjunto de datos. Completada a partir de las notas originales de laboratorio antes de su publicación.",
+"Initial founding entry.":"Entrada inicial del conjunto de datos.",
+"Preparation recorded from the current project notes; other parameters remain unfilled until verified.":"Preparación registrada a partir de las notas actuales del proyecto; los demás parámetros quedan sin completar hasta su verificación.",
+"First comparative series; 2.5 g oak per 300 ml. Additional components not used.":"Primera serie comparativa; 2,5 g de roble por 300 ml. No se utilizaron componentes adicionales.",
+"First tasting — new scoring system. Transcribed from the tasting journal dated 04.09.2026.":"Primera cata — nuevo sistema de puntuación. Transcrito del diario de cata del 04.09.2026.",
+"First tasting visual evidence: three uploaded photos dated 04.09.2026 showing samples 1–8. Visual appearance notes are descriptive only and are not sensory scores.":"Evidencia visual de la primera cata: tres fotos subidas el 04.09.2026 que muestran las muestras 1–8. Las notas sobre el aspecto son únicamente descriptivas y no son puntuaciones sensoriales.",
+"OakLab visual color record":"Registro visual del color de OakLab",
+"220 °C; no additional charring":"220 °C; sin carbonización adicional"
+},
+it:{
+"Initial founding entry. Complete from original lab notes before public release.":"Voce iniziale del dataset. Completata sulla base delle note di laboratorio originali prima della pubblicazione.",
+"Initial founding entry.":"Voce iniziale del dataset.",
+"Preparation recorded from the current project notes; other parameters remain unfilled until verified.":"Preparazione registrata dalle note attuali del progetto; gli altri parametri restano da compilare fino alla verifica.",
+"First comparative series; 2.5 g oak per 300 ml. Additional components not used.":"Prima serie comparativa; 2,5 g di rovere per 300 ml. Nessun componente aggiuntivo utilizzato.",
+"First tasting — new scoring system. Transcribed from the tasting journal dated 04.09.2026.":"Prima degustazione — nuovo sistema di valutazione. Trascritto dal diario di degustazione del 04.09.2026.",
+"First tasting visual evidence: three uploaded photos dated 04.09.2026 showing samples 1–8. Visual appearance notes are descriptive only and are not sensory scores.":"Prove visive della prima degustazione: tre foto caricate il 04.09.2026 che mostrano i campioni 1–8. Le note sull'aspetto sono esclusivamente descrittive e non costituiscono valutazioni sensoriali.",
+"OakLab visual color record":"Registrazione visiva del colore OakLab",
+"220 °C; no additional charring":"220 °C; senza carbonizzazione aggiuntiva"
+},
+pt:{
+"Initial founding entry. Complete from original lab notes before public release.":"Entrada inicial do conjunto de dados. Concluída a partir das notas originais do laboratório antes da publicação.",
+"Initial founding entry.":"Entrada inicial do conjunto de dados.",
+"Preparation recorded from the current project notes; other parameters remain unfilled until verified.":"Preparação registada a partir das notas atuais do projeto; os restantes parâmetros ficam por preencher até serem verificados.",
+"First comparative series; 2.5 g oak per 300 ml. Additional components not used.":"Primeira série comparativa; 2,5 g de carvalho por 300 ml. Não foram utilizados componentes adicionais.",
+"First tasting — new scoring system. Transcribed from the tasting journal dated 04.09.2026.":"Primeira degustação — novo sistema de avaliação. Transcrito do diário de degustação de 04.09.2026.",
+"First tasting visual evidence: three uploaded photos dated 04.09.2026 showing samples 1–8. Visual appearance notes are descriptive only and are not sensory scores.":"Evidência visual da primeira degustação: três fotografias carregadas em 04.09.2026 mostrando as amostras 1–8. As notas sobre o aspeto são apenas descritivas e não constituem avaliações sensoriais.",
+"OakLab visual color record":"Registo visual da cor OakLab",
+"220 °C; no additional charring":"220 °C; sem carbonização adicional"
+}};
+const localizeDataText=x=>typeof x==="string"?(DATA_TEXT[lang]?.[x]??DATA_TEXT.en[x]??x):x;
 const scoreLabels={
   ru:{aroma:"Аромат",softness:"Мягкость",oak:"Дуб / древесность",vanilla:"Ваниль",caramelToast:"Карамель / обжарка",fruitNut:"Сухофрукты / орехи",smokeChar:"Дым / обугленность",spirit:"Спиртуозность",bitterness:"Горечь",astringency:"Терпкость"},
   en:{aroma:"Aroma",softness:"Softness",oak:"Oak / wood",vanilla:"Vanilla",caramelToast:"Caramel / toast",fruitNut:"Dried fruit / nuts",smokeChar:"Smoke / char",spirit:"Spirit",bitterness:"Bitterness",astringency:"Astringency"},
@@ -86,15 +158,15 @@ function card(x){
    <div class="chips">${chips}</div>
    ${x.replication?.sourceId?`<div class="meta">↳ ${esc(x.replication.sourceId)}</div>`:""}
    <small>${children} ${t("replications")}</small>
-   <p>${esc(x.observations?.overallNotes||"")}</p>
+   <p>${esc(localizeDataText(x.observations?.overallNotes||""))}</p>
    <button class="open" data-id="${esc(x.id)}">${t("view")}</button>
  </article>`;
 }
 function details(x){
  const p=x.oak?.preparation||{},e=x.extraction||{},l=x.liquid||{},o=x.observations||{},ts=x.tastingSessions||[];
- const row=(label,v,unit="")=>v!=null&&v!==""?`<div><dt>${label}</dt><dd>${esc(v)}${unit}</dd></div>`:"";
+ const row=(label,v,unit="")=>v!=null&&v!==""?`<div><dt>${label}</dt><dd>${esc(localizeDataText(v))}${unit}</dd></div>`:"";
  const scoreKeys=["aroma","softness","oak","vanilla","caramelToast","fruitNut","smokeChar","spirit","bitterness","astringency"];
- const tasting=ts.map(v=>`<h3>${t("firstTasting")} — ${esc(v.date||"")}</h3><div class="meta">${t("order")}: ${esc(v.order??"—")} · ${t("aging")}: ${esc(v.agingDays??"—")} ${t("days")} · ${t("total")}: ${esc(v.total??"—")}/50 · ${t("overall")}: ${esc(v.overall??"—")}/10</div><dl>${Object.entries(scoreLabels).map(([k,n])=>row(scoreLabelText(k),v.scores?.[k])).join("")}</dl>${row(t("notes"),v.notes)}`).join("");
+ const tasting=ts.map(v=>`<h3>${t("firstTasting")} — ${esc(v.date||"")}</h3><div class="meta">${t("order")}: ${esc(v.order??"—")} · ${t("aging")}: ${esc(v.agingDays??"—")} ${t("days")} · ${t("total")}: ${esc(v.total??"—")}/50 · ${t("overall")}: ${esc(v.overall??"—")}/10</div><dl>${scoreKeys.map(k=>row(scoreLabelText(k),v.scores?.[k])).join("")}</dl>${row(t("notes"),v.notes)}`).join("");
  $("#detailBody").innerHTML=`<div class="detail-scroll">
    <div class="detailtitle"><span class="chip">${esc(statusText(x.status))}</span><span class="meta">${esc(x.id)}</span></div>
    <h2>${esc(x.title)}</h2><p class="meta">${esc(authorText(x.author||""))}</p>
