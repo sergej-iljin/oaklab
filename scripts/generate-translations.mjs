@@ -61,7 +61,7 @@ if(missing.length && process.env.OPENAI_API_KEY){
     if(!response.ok) throw new Error("Translation API failed: "+response.status+" "+await response.text());
     const body=await response.json();
     let text=body.output_text||"";
-    text=text.replace(/^\\s*\`\`\`json\\s*/,"").replace(/\\s*\`\`\`\\s*$/,"").trim();
+    text=text.replace(/^\s*```json\s*/,"").replace(/\s*```\s*$/,"").trim();
     const rows=JSON.parse(text);
     for(const row of rows){
       if(row?.source && row?.targetLanguage && typeof row.translation==="string"){
