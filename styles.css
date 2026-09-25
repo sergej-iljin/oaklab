@@ -50,3 +50,38 @@ header{flex-wrap:wrap;gap:12px}
 }
 
 .card{position:relative}.card-select{position:absolute;right:16px;top:14px;display:flex;align-items:center;gap:6px;font-size:12px;color:#777;z-index:2}.card-select input{accent-color:#222;width:16px;height:16px}.card-select span{white-space:nowrap}.card:has(.compare-check:checked){outline:2px solid #777;outline-offset:-2px}
+
+/* OakLab tasting presentation: cognac snifter + tasting radar */
+.wine-glass .bowl{
+  left:3px;top:0;width:42px;height:39px;
+  border:1.5px solid #aaa49a;border-top:1px solid #aaa49a;
+  border-radius:50% 50% 42% 42% / 42% 42% 58% 58%;
+  background:linear-gradient(90deg,#ffffff99,#fff0 32%,#fff7 52%,#ffffff20);
+}
+.wine-glass .liquid{left:-2px;right:-2px;bottom:0;height:54%;border-radius:0 0 48% 48%;opacity:.94}
+.wine-glass .stem{left:24px;top:37px;width:2px;height:16px;background:#aaa69f}
+.wine-glass .foot{left:9px;top:52px;width:30px;height:6px;border:1px solid #aaa69f;border-radius:50%}
+.wine-glass.large{width:200px;height:250px}
+.wine-glass.large .bowl{
+  left:7px;top:0;width:186px;height:166px;
+  border-width:2.5px;border-radius:50% 50% 38% 38% / 45% 45% 55% 55%;
+}
+.wine-glass.large .liquid{height:52%;border-radius:0 0 47% 47%}
+.wine-glass.large .shine{left:31px;top:18px;width:16px;height:78px}
+.wine-glass.large .stem{left:99px;top:163px;width:3px;height:58px}
+.wine-glass.large .foot{left:37px;top:218px;width:126px;height:17px;border-width:2px}
+.detail-visual-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:stretch;margin:18px 0 28px}
+.detail-visual-grid .color-panel,.detail-visual-grid .radar-panel{margin:0}
+.detail-visual-grid .glass-stage{width:170px;min-width:170px;height:245px}
+.detail-visual-grid .wine-glass.large{transform:scale(.86);transform-origin:top center}
+.radar-panel{padding:16px;border:1px solid #ddd8cf;border-radius:14px;background:#faf9f6;min-width:0}
+.radar-panel h3{margin:0 0 2px}
+.radar{display:block;width:100%;height:auto;max-height:420px}
+.radar-label{font:14px system-ui,-apple-system,sans-serif;fill:#4f4b45}
+.radar-value{font:bold 15px system-ui,-apple-system,sans-serif;fill:#7b3510}
+.radar-scale{text-align:center;color:#777;font-size:12px;margin-top:-8px}
+@media(max-width:760px){
+ .detail-visual-grid{grid-template-columns:1fr}
+ .detail-visual-grid .glass-stage{width:100%;min-width:0}
+ .detail-visual-grid .wine-glass.large{transform:scale(.92)}
+}
