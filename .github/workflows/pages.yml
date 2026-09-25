@@ -1,4 +1,4 @@
-name: Deploy OakLab
+name: Translate and Deploy OakLab
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -15,14 +15,39 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  prepare:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Generate translation cache
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node scripts/generate-translations.mjs
+      - name: Commit translation cache
+        run: |
+          if git diff --quiet -- translations.json; then
+            echo "No translation changes."
+            exit 0
+          fi
+          git config user.name "oaklab-translation-bot"
+          git config user.email "oaklab-translation-bot@users.noreply.github.com"
+          git add translations.json
+          git commit -m "Auto-update translations"
+          git push
+
+  deploy:
+    needs: prepare
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
