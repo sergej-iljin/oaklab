@@ -26,8 +26,6 @@ for(const item of (DATA.experiments||[])){
   for(const s of (obj.tastingSessions||[])) if(typeof s.notes==="string"&&s.notes.trim()) sources.add(s.notes.trim());
 }
 
-for(const source of sources) cache.ru[source]=source;
-
 const missing=[];
 for(const source of sources){
   for(const lang of LANGS.filter(x=>x!==SOURCE_LANG)){
