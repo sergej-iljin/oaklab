@@ -103,6 +103,39 @@ pt:{
 "220 °C; no additional charring":"220 °C; sem carbonização adicional"
 }};
 const localizeDataText=x=>typeof x==="string"?(DATA_TEXT[lang]?.[x]??DATA_TEXT.en[x]??x):x;
+// Tasting-note localization
+for (const [k,vals] of Object.entries({
+  "Second independent tasting — Александр; 25.09.2026; 2 months aging. Separate tasting result. Scores transcribed from the tasting sheet. Overall impression is separate and excluded from total 0–50.": {
+    ru:"Вторая независимая дегустация — Александр; 25.09.2026; выдержка 2 месяца. Отдельный результат дегустации. Оценки перенесены из дегустационного листа. Общее впечатление является отдельной оценкой и не входит в итог 0–50.",
+    en:"Second independent tasting — Alexander; 25.09.2026; 2 months aging. Separate tasting result. Scores transcribed from the tasting sheet. Overall impression is separate and excluded from total 0–50.",
+    de:"Zweite unabhängige Verkostung — Alexander; 25.09.2026; 2 Monate Reifung. Separates Verkostungsergebnis. Die Bewertungen wurden aus dem Verkostungsbogen übertragen. Der Gesamteindruck ist eine separate Bewertung und nicht in der Summe 0–50 enthalten.",
+    fr:"Deuxième dégustation indépendante — Alexander ; 25.09.2026 ; vieillissement de 2 mois. Résultat de dégustation séparé. Les notes ont été transcrites depuis la fiche de dégustation. L'impression générale est une évaluation distincte et n'est pas incluse dans le total 0–50.",
+    es:"Segunda cata independiente — Alexander; 25.09.2026; 2 meses de envejecimiento. Resultado de cata separado. Las puntuaciones se transcribieron de la hoja de cata. La impresión general es una evaluación independiente y no está incluida en el total 0–50.",
+    it:"Seconda degustazione indipendente — Alexander; 25.09.2026; 2 mesi di affinamento. Risultato di degustazione separato. I punteggi sono stati trascritti dalla scheda di degustazione. L'impressione complessiva è una valutazione separata e non è inclusa nel totale 0–50.",
+    pt:"Segunda degustação independente — Alexander; 25.09.2026; 2 meses de envelhecimento. Resultado de degustação separado. As pontuações foram transcritas da ficha de degustação. A impressão geral é uma avaliação separada e não está incluída no total 0–50."
+  },
+  "Second independent tasting — Александр; 25.09.2026; 2 months aging. One joint result. Scores transcribed from the tasting sheet. Overall impression is separate and excluded from total 0–50.": {
+    ru:"Вторая независимая дегустация — Александр; 25.09.2026; выдержка 2 месяца. Один общий результат. Оценки перенесены из дегустационного листа. Общее впечатление является отдельной оценкой и не входит в итог 0–50.",
+    en:"Second independent tasting — Alexander; 25.09.2026; 2 months aging. One joint result. Scores transcribed from the tasting sheet. Overall impression is separate and excluded from total 0–50.",
+    de:"Zweite unabhängige Verkostung — Alexander; 25.09.2026; 2 Monate Reifung. Ein gemeinsames Ergebnis. Die Bewertungen wurden aus dem Verkostungsbogen übertragen. Der Gesamteindruck ist eine separate Bewertung und nicht in der Summe 0–50 enthalten.",
+    fr:"Deuxième dégustation indépendante — Alexander ; 25.09.2026 ; vieillissement de 2 mois. Un seul résultat commun. Les notes ont été transcrites depuis la fiche de dégustation. L'impression générale est une évaluation distincte et n'est pas incluse dans le total 0–50.",
+    es:"Segunda cata independiente — Alexander; 25.09.2026; 2 meses de envejecimiento. Un único resultado conjunto. Las puntuaciones se transcribieron de la hoja de cata. La impresión general es una evaluación independiente y no está incluida en el total 0–50.",
+    it:"Seconda degustazione indipendente — Alexander; 25.09.2026; 2 mesi di affinamento. Un unico risultato congiunto. I punteggi sono stati trascritti dalla scheda di degustazione. L'impressione complessiva è una valutazione separata e non è inclusa nel totale 0–50.",
+    pt:"Segunda degustação independente — Alexander; 25.09.2026; 2 meses de envelhecimento. Um único resultado conjunto. As pontuações foram transcritas da ficha de degustação. A impressão geral é uma avaliação separada e não está incluída no total 0–50."
+  },
+  "Second independent tasting — Alexander; 25.09.2026; 2 months aging. Scores transcribed from the tasting sheet. Overall impression is separate and excluded from total 0–50.": {
+    ru:"Вторая независимая дегустация — Александр; 25.09.2026; выдержка 2 месяца. Оценки перенесены из дегустационного листа. Общее впечатление является отдельной оценкой и не входит в итог 0–50.",
+    en:"Second independent tasting — Alexander; 25.09.2026; 2 months aging. Scores transcribed from the tasting sheet. Overall impression is separate and excluded from total 0–50.",
+    de:"Zweite unabhängige Verkostung — Alexander; 25.09.2026; 2 Monate Reifung. Die Bewertungen wurden aus dem Verkostungsbogen übertragen. Der Gesamteindruck ist eine separate Bewertung und nicht in der Summe 0–50 enthalten.",
+    fr:"Deuxième dégustation indépendante — Alexander ; 25.09.2026 ; vieillissement de 2 mois. Les notes ont été transcrites depuis la fiche de dégustation. L'impression générale est une évaluation distincte et n'est pas incluse dans le total 0–50.",
+    es:"Segunda cata independiente — Alexander; 25.09.2026; 2 meses de envejecimiento. Las puntuaciones se transcribieron de la hoja de cata. La impresión general es una evaluación independiente y no está incluida en el total 0–50.",
+    it:"Seconda degustazione indipendente — Alexander; 25.09.2026; 2 mesi di affinamento. I punteggi sono stati trascritti dalla scheda di degustazione. L'impressione complessiva è una valutazione separata e non è inclusa nel totale 0–50.",
+    pt:"Segunda degustação independente — Alexander; 25.09.2026; 2 meses de envelhecimento. As pontuações foram transcritas da ficha de degustação. A impressão geral é uma avaliação separada e não está incluída no total 0–50."
+  }
+})) {
+  for (const [lng,textValue] of Object.entries(vals)) { if (!DATA_TEXT[lng]) DATA_TEXT[lng]={}; DATA_TEXT[lng][k]=textValue; }
+}
+
 const scoreLabels={
   ru:{aroma:"Аромат",softness:"Мягкость",oak:"Дуб / древесность",vanilla:"Ваниль",caramelToast:"Карамель / обжарка",fruitNut:"Сухофрукты / орехи",smokeChar:"Дым / обугленность",spirit:"Спиртуозность",bitterness:"Горечь",astringency:"Терпкость"},
   en:{aroma:"Aroma",softness:"Softness",oak:"Oak / wood",vanilla:"Vanilla",caramelToast:"Caramel / toast",fruitNut:"Dried fruit / nuts",smokeChar:"Smoke / char",spirit:"Spirit",bitterness:"Bitterness",astringency:"Astringency"},
