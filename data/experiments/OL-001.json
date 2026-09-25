@@ -76,6 +76,26 @@
       "total": 10,
       "overall": 1,
       "notes": "First tasting — new scoring system. Transcribed from the tasting journal dated 04.09.2026."
+    },
+    {
+      "date": "2026-09-25",
+      "agingDays": 61,
+      "order": 1,
+      "scores": {
+        "aroma": 1,
+        "spirit": 1,
+        "softness": 0,
+        "oak": 2,
+        "vanilla": 0,
+        "caramelToast": 0,
+        "fruitNut": 0,
+        "smokeChar": 2,
+        "bitterness": 2,
+        "astringency": 2
+      },
+      "total": 12,
+      "overall": 2,
+      "notes": "Second independent tasting — Alexander; 25.09.2026; 2 months aging. Scores transcribed from the tasting sheet. Overall impression is separate and excluded from total 0–50."
     }
   ]
 }
