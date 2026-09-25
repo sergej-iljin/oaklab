@@ -31,6 +31,7 @@ const containerText=x=>x==="glass jar"?v("glassJar"):x;
 const agitationText=x=>x==="periodic shaking"?v("periodicShaking"):x;
 const authorText=x=>x==="Founding dataset"?v("founding"):x;
 const durationText=(x)=>x==null||x===""?x:lang==="ru"?String(x).replace(/\bh\b/g,"ч").replace(/\bmin\b/g,"мин"):x;
+let AUTO_TEXT={};
 const DATA_TEXT={
 ru:{
 "Initial founding entry. Complete from original lab notes before public release.":"Исходная запись набора данных. Заполнена по исходным лабораторным заметкам перед публичной публикацией.",
@@ -102,7 +103,7 @@ pt:{
 "OakLab visual color record":"Registo visual da cor OakLab",
 "220 °C; no additional charring":"220 °C; sem carbonização adicional"
 }};
-const localizeDataText=x=>typeof x==="string"?(DATA_TEXT[lang]?.[x]??DATA_TEXT.en[x]??x):x;
+const localizeDataText=x=>typeof x==="string"?(AUTO_TEXT[lang]?.[x]??DATA_TEXT[lang]?.[x]??DATA_TEXT.en[x]??x):x;
 // Tasting-note localization
 for (const [k,vals] of Object.entries({
   "Second independent tasting — Александр; 25.09.2026; 2 months aging. Separate tasting result. Scores transcribed from the tasting sheet. Overall impression is separate and excluded from total 0–50.": {
@@ -183,7 +184,8 @@ function applyLanguage(){
  render();
 }
 async function load(){
- try{const r=await fetch("data.json",{cache:"no-store"});if(!r.ok)throw Error();const j=await r.json();data=await Promise.all((j.experiments||[]).map(async m=>{const r=await fetch(m.path,{cache:"no-store"});if(!r.ok)throw Error(m.path);return r.json()}));}
+ try{const tr=await fetch("translations.json",{cache:"no-store"});if(tr.ok)AUTO_TEXT=await tr.json();
+ const r=await fetch("data.json",{cache:"no-store"});if(!r.ok)throw Error();const j=await r.json();data=await Promise.all((j.experiments||[]).map(async m=>{const r=await fetch(m.path,{cache:"no-store"});if(!r.ok)throw Error(m.path);return r.json()}));}
  catch(e){console.error(e);data=[];$("#list").innerHTML='<div class="empty">'+t("loadError")+"</div>"}render();
 }
 function render(){
